@@ -5,23 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MEHMET ❤️ ELA</title>
   <style>
-    <style>
-body {
-  background-image: url('https://raw.githubusercontent.com/babapro341/elama-hediye/main/resim.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
-</style>
-
     body {
       margin: 0;
       height: 100vh;
       overflow: hidden;
-      background: linear-gradient(45deg, #ff66b2, #66ccff, #000000, #ff0000);
-      background-size: 400% 400%;
-      animation: gradient 10s ease infinite;
+      background-image: url('https://raw.githubusercontent.com/babapro341/elama-hediye/main/resim.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -29,12 +21,6 @@ body {
       font-family: 'Comic Sans MS', cursive;
       color: white;
       text-align: center;
-    }
-
-    @keyframes gradient {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
     }
 
     h1 {
@@ -47,6 +33,20 @@ body {
       margin-top: -10px;
       color: #fff;
       text-shadow: 0 0 10px #ff66b2;
+    }
+
+    /* Kalpler */
+    .heart {
+      position: fixed;
+      color: red;
+      font-size: 25px;
+      animation: float 5s linear infinite;
+      opacity: 0;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-800px) scale(1.5); opacity: 0; }
     }
 
     /* Müzik butonu */
@@ -67,61 +67,40 @@ body {
     #playButton:hover {
       background-color: #444;
     }
-
-    /* Kalpler */
-    .heart {
-      position: fixed;
-      color: red;
-      font-size: 25px;
-      animation: float 5s linear infinite;
-    }
-
-    @keyframes float {
-      0% { transform: translateY(0) scale(1); opacity: 1; }
-      100% { transform: translateY(-800px) scale(1.5); opacity: 0; }
-    }
   </style>
 </head>
 <body>
   <h1>MEHMET ❤️ ELA</h1>
   <h2>Seni çok seviyorum Ela</h2>
 
-  <!-- Müzik dosyası -->
-  <audio id="music" src="sarki.mp3"></audio>
-
-  <!-- Buton -->
   <button id="playButton">🎵 Müziği Başlat</button>
+  <audio id="music" src="muzik.mp3"></audio>
 
   <script>
-    const button = document.getElementById('playButton');
+    // Müzik butonu
+    const playButton = document.getElementById('playButton');
     const music = document.getElementById('music');
-    let isPlaying = false;
-
-    button.addEventListener('click', () => {
-      if (!isPlaying) {
+    playButton.addEventListener('click', () => {
+      if (music.paused) {
         music.play();
-        button.textContent = "⏸ Müziği Durdur";
-        isPlaying = true;
+        playButton.textContent = "🎶 Çalıyor...";
       } else {
         music.pause();
-        button.textContent = "🎵 Müziği Başlat";
-        isPlaying = false;
+        playButton.textContent = "🎵 Müziği Başlat";
       }
     });
 
-    // Kalpler oluşturma
+    // Kalp animasyonu
     function createHeart() {
       const heart = document.createElement('div');
       heart.classList.add('heart');
       heart.innerHTML = '❤️';
+      document.body.appendChild(heart);
       heart.style.left = Math.random() * 100 + 'vw';
       heart.style.animationDuration = (3 + Math.random() * 2) + 's';
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 5000);
+      setTimeout(() => { heart.remove(); }, 5000);
     }
     setInterval(createHeart, 300);
   </script>
 </body>
 </html>
-
-
