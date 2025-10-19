@@ -57,6 +57,7 @@
       cursor: pointer;
       transition: all 0.4s ease;
       overflow: hidden;
+      position: relative;
     }
 
     .box.open {
@@ -80,15 +81,15 @@
       opacity: 1;
     }
 
-    /* Müzik butonu */
+    /* Müzik butonu (ilk haline geri dönmüş versiyon) */
     #playButton {
       background-color: #ff66b2;
       color: white;
       border: none;
-      border-radius: 8px;
-      padding: 10px 20px;
+      border-radius: 10px;
+      padding: 15px 25px;
       cursor: pointer;
-      font-size: 14px;
+      font-size: 16px;
       transition: 0.3s;
     }
 
@@ -140,16 +141,15 @@
 
   <!-- Kutular -->
   <div class="box-container">
-    <!-- Müzik kutusu -->
+    <!-- 🎵 Müzik kutusu (ilk haline döndü) -->
     <div class="box" id="musicBox">
-      <div class="box-content">
+      <div class="box-content" style="opacity:1;">
         <button id="playButton">🎵 Müziği Başlat</button>
         <audio id="music" src="baba.mp3"></audio>
       </div>
-      <span class="box-label">🎶 Müzik</span>
     </div>
 
-    <!-- Fotoğraf kutusu -->
+    <!-- 📸 Fotoğraf kutusu (şu anki halini koruyor) -->
     <div class="box" id="photoBox">
       <div class="box-content">
         <div class="photo-gallery">
@@ -163,7 +163,7 @@
   </div>
 
   <script>
-    // Müzik butonu
+    // 🎵 Müzik butonu
     const playButton = document.getElementById('playButton');
     const music = document.getElementById('music');
     playButton.addEventListener('click', (event) => {
@@ -177,15 +177,13 @@
       }
     });
 
-    // Kutulara tıklayınca aç/kapat
-    const boxes = document.querySelectorAll('.box');
-    boxes.forEach(box => {
-      box.addEventListener('click', () => {
-        box.classList.toggle('open');
-      });
+    // 📸 Fotoğraf kutusu tıklanınca aç/kapat
+    const photoBox = document.getElementById('photoBox');
+    photoBox.addEventListener('click', () => {
+      photoBox.classList.toggle('open');
     });
 
-    // Kalp animasyonu
+    // ❤️ Kalp animasyonu
     function createHeart() {
       const heart = document.createElement('div');
       heart.classList.add('heart');
