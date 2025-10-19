@@ -1,197 +1,115 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>💖 ELA SENDEN ÖZÜR DİLİYORUM 💖</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MEHMET ❤️ ELA</title>
   <style>
     body {
       margin: 0;
-      overflow: hidden;
-      font-family: 'Poppins', sans-serif;
-      background-color: #ffd6e0;
-      text-align: center;
       height: 100vh;
-    }
-    h1 {
-      color: #e91e63;
-      margin-top: 120px;
-      font-size: 2.4em;
-      animation: fadeIn 2s ease-in-out;
-    }
-    h2 {
-      color: #444;
-      font-weight: normal;
-      font-size: 1.8em;
-      margin-top: 10px;
-      animation: fadeIn 3s ease-in-out;
-    }
-    .buttons {
-      margin-top: 40px;
-      animation: fadeIn 4s ease-in-out;
-    }
-    .btn {
-      border: none;
-      border-radius: 15px;
+      overflow: hidden;
+      background: linear-gradient(45deg, #ff66b2, #66ccff, #000000, #ff0000);
+      background-size: 400% 400%;
+      animation: gradient 10s ease infinite;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Comic Sans MS', cursive;
       color: white;
-      padding: 15px 40px;
-      font-size: 1.2em;
-      margin: 10px;
+      text-align: center;
+    }
+
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+      font-size: 60px;
+      text-shadow: 0 0 20px #ff0000;
+    }
+
+    h2 {
+      font-size: 28px;
+      margin-top: -10px;
+      color: #fff;
+      text-shadow: 0 0 10px #ff66b2;
+    }
+
+    /* Müzik butonu */
+    #playButton {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: black;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 15px 25px;
       cursor: pointer;
-      transition: transform 0.3s, opacity 0.3s;
+      font-size: 16px;
+      transition: 0.3s;
     }
-    .yes {
-      background-color: #4CAF50;
+
+    #playButton:hover {
+      background-color: #444;
     }
-    .no {
-      background-color: #f44336;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+
+    /* Kalpler */
     .heart {
-      position: absolute;
-      color: #ff5fa2;
-      font-size: 20px;
-      animation: floatUp 6s linear infinite;
+      position: fixed;
+      color: red;
+      font-size: 25px;
+      animation: float 5s linear infinite;
     }
-    @keyframes floatUp {
-      from { transform: translateY(100vh) scale(1); opacity: 1; }
-      to { transform: translateY(-10vh) scale(1.5); opacity: 0; }
-    }
-    /* Konfeti parçaları */
-    .confetti {
-      position: absolute;
-      width: 8px;
-      height: 8px;
-      background-color: red;
-      pointer-events: none;
-      opacity: 0.8;
+
+    @keyframes float {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-800px) scale(1.5); opacity: 0; }
     }
   </style>
 </head>
 <body>
-  <h1>💖 ELA SENDEN ÖZÜR DİLİYORUM 💖</h1>
-  <h2>Barışalım mı?</h2>
+  <h1>MEHMET ❤️ ELA</h1>
+  <h2>Seni çok seviyorum Ela</h2>
 
-  <div class="buttons">
-    <button class="btn yes" onclick="evet()">Evet 💚</button>
-    <button class="btn no" onclick="hayir()">Hayır 💔</button>
-  </div>
+  <!-- Müzik dosyası -->
+  <audio id="music" src="sarki.mp3"></audio>
 
-  <!-- Gömmüş olduğumuz YouTube videosu, görüntülenmez ama ses çıkar -->
-  <iframe id="ytplayer" type="text/html"
-    width="0" height="0"
-    src="https://www.youtube.com/embed/sjcW5r3uJQI?autoplay=1&loop=1&playlist=sjcW5r3uJQI"
-    frameborder="0" allow="autoplay; encrypted-media"
-    allowfullscreen>
-  </iframe>
+  <!-- Buton -->
+  <button id="playButton">🎵 Müziği Başlat</button>
 
   <script>
-    // Kalp animasyonu
+    const button = document.getElementById('playButton');
+    const music = document.getElementById('music');
+    let isPlaying = false;
+
+    button.addEventListener('click', () => {
+      if (!isPlaying) {
+        music.play();
+        button.textContent = "⏸ Müziği Durdur";
+        isPlaying = true;
+      } else {
+        music.pause();
+        button.textContent = "🎵 Müziği Başlat";
+        isPlaying = false;
+      }
+    });
+
+    // Kalpler oluşturma
     function createHeart() {
-      const heart = document.createElement("div");
-      heart.classList.add("heart");
-      heart.innerHTML = "💗";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = (4 + Math.random() * 3) + "s";
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.innerHTML = '❤️';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (3 + Math.random() * 2) + 's';
       document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 7000);
+      setTimeout(() => heart.remove(), 5000);
     }
     setInterval(createHeart, 300);
-
-    // Hayır butonu davranışı
-    let noButton = document.querySelector(".no");
-    let noScale = 1;
-    function hayir() {
-      noScale *= 0.8;
-      noButton.style.transform = `scale(${noScale})`;
-      if (noScale < 0.3) {
-        noButton.remove();
-      }
-    }
-
-    // Evet butonu: konfeti + mesaj
-    function evet() {
-      // Konfeti yarat
-      konfetiPatlat();
-      // Mesajı göster
-      setTimeout(() => {
-        document.body.innerHTML = `
-          <h1 style="color:#e91e63; margin-top:200px; font-size:2.8em; animation:fadeIn 2s ease-in-out;">
-            💞 Seni Seviyorum! 💞
-          </h1>
-          <p style="font-size:1.5em; color:#444;">Artık barıştık 🕊️💖</p>
-        `;
-      }, 800);
-    }
-
-    function konfetiPatlat() {
-      const count = 150;
-      for (let i = 0; i < count; i++) {
-        setTimeout(() => {
-          const c = document.createElement("div");
-          c.classList.add("confetti");
-          c.style.backgroundColor = `hsl(${Math.random()*360}, 100%, 70%)`;
-          c.style.left = Math.random() * window.innerWidth + "px";
-          c.style.top = "-10px";
-          document.body.appendChild(c);
-          // Konfeti düşsün
-          let fallSpeed = 2 + Math.random() * 3;
-          let drift = (Math.random() - 0.5) * 2;
-          function fall() {
-            const top = parseFloat(c.style.top);
-            c.style.top = top + fallSpeed + "px";
-            c.style.left = parseFloat(c.style.left) + drift + "px";
-            fallSpeed += 0.05;
-            if (top < window.innerHeight) {
-              requestAnimationFrame(fall);
-            } else {
-              c.remove();
-            }
-          }
-          requestAnimationFrame(fall);
-        }, Math.random() * 500);
-      }
-    }
   </script>
-  <!-- Müzik çalma butonu -->
-<button id="playButton" style="
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #ff66b2;
-  color: white;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 12px;
-  font-size: 16px;
-  cursor: pointer;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
-">
-🎵 Müziği Başlat
-</button>
-
-<audio id="myAudio" loop>
-  <source src="sarki.mp3" type="audio/mpeg">
-  Tarayıcınız ses çalmayı desteklemiyor.
-</audio>
-
-<script>
-  const button = document.getElementById("playButton");
-  const audio = document.getElementById("myAudio");
-
-  button.addEventListener("click", () => {
-    audio.play();
-    button.innerText = "🎶 Çalıyor...";
-    button.disabled = true;
-    button.style.backgroundColor = "#aaa";
-  });
-</script>
-</audio>
 </body>
-
 </html>
-
-
