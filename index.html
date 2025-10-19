@@ -38,8 +38,8 @@
     /* Kutucuk alanı */
     .box-container {
       display: flex;
-      gap: 20px;
-      margin-top: 20px;
+      gap: 25px;
+      margin-top: 25px;
       flex-wrap: wrap;
       justify-content: center;
     }
@@ -48,14 +48,36 @@
       background-color: rgba(0, 0, 0, 0.6);
       border: 2px solid #ff66b2;
       border-radius: 15px;
-      padding: 20px;
+      width: 150px;
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 15px #ff66b2;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      overflow: hidden;
+    }
+
+    .box.open {
       width: 250px;
       height: 250px;
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .box-content {
+      opacity: 0;
+      transition: opacity 0.4s ease;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 15px #ff66b2;
+      width: 100%;
+      height: 100%;
+    }
+
+    .box.open .box-content {
+      opacity: 1;
     }
 
     .box img {
@@ -103,14 +125,18 @@
   <!-- Kutular -->
   <div class="box-container">
     <!-- Müzik kutusu -->
-    <div class="box">
-      <button id="playButton">🎵 Müziği Başlat</button>
-      <audio id="music" src="baba.mp3"></audio>
+    <div class="box" id="musicBox">
+      <div class="box-content">
+        <button id="playButton">🎵 Müziği Başlat</button>
+        <audio id="music" src="baba.mp3"></audio>
+      </div>
     </div>
 
     <!-- Fotoğraf kutusu -->
-    <div class="box">
-      <img src="https://raw.githubusercontent.com/babapro341/elama-hediye/refs/heads/main/resim2.jpg" alt="Bizim Fotoğrafımız">
+    <div class="box" id="photoBox">
+      <div class="box-content">
+        <img src="https://raw.githubusercontent.com/babapro341/elama-hediye/refs/heads/main/resim2.jpg" alt="Bizim Fotoğrafımız">
+      </div>
     </div>
   </div>
 
@@ -118,7 +144,8 @@
     // Müzik butonu
     const playButton = document.getElementById('playButton');
     const music = document.getElementById('music');
-    playButton.addEventListener('click', () => {
+    playButton.addEventListener('click', (event) => {
+      event.stopPropagation(); // kutuya tıklamayı engeller
       if (music.paused) {
         music.play();
         playButton.textContent = "🎶 Çalıyor...";
@@ -126,6 +153,14 @@
         music.pause();
         playButton.textContent = "🎵 Müziği Başlat";
       }
+    });
+
+    // Kutulara tıklayınca aç/kapat
+    const boxes = document.querySelectorAll('.box');
+    boxes.forEach(box => {
+      box.addEventListener('click', () => {
+        box.classList.toggle('open');
+      });
     });
 
     // Kalp animasyonu
