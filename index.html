@@ -35,15 +35,33 @@
       text-shadow: 0 0 10px #ff66b2;
     }
 
-    /* Kutucuk alanı */
+    /* Üstteki kutular (müzik ve fotoğraf) yan yana */
     .box-container {
       display: flex;
-      gap: 25px;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
       margin-top: 25px;
       flex-wrap: wrap;
-      justify-content: center;
     }
 
+    /* 🎵 Müzik butonu sade */
+    #playButton {
+      background: none;
+      border: none;
+      color: black;
+      font-size: 22px;
+      font-weight: bold;
+      cursor: pointer;
+      text-shadow: 0 0 5px white;
+      transition: transform 0.2s;
+    }
+
+    #playButton:hover {
+      transform: scale(1.1);
+    }
+
+    /* 📸 Fotoğraf albümü kutusu */
     .box {
       background-color: rgba(0, 0, 0, 0.6);
       border: 2px solid #ff66b2;
@@ -81,23 +99,7 @@
       opacity: 1;
     }
 
-    /* 🎵 Müzik butonu — sade yazı haline getirildi */
-    #playButton {
-      background: none;
-      border: none;
-      color: black;
-      font-size: 20px;
-      font-weight: bold;
-      cursor: pointer;
-      text-shadow: 0 0 5px white;
-      transition: transform 0.2s;
-    }
-
-    #playButton:hover {
-      transform: scale(1.1);
-    }
-
-    /* Fotoğraf galerisi */
+    /* 📸 Fotoğraf galerisi */
     .photo-gallery {
       display: flex;
       flex-wrap: wrap;
@@ -120,7 +122,7 @@
       transform: scale(1.1);
     }
 
-    /* Kalpler */
+    /* ❤️ Kalpler */
     .heart {
       position: fixed;
       color: red;
@@ -139,12 +141,10 @@
   <h1>MEHMET ❤️ ELA</h1>
   <h2>ÇOK SEVİYORUM SENİ ELAA</h2>
 
-  <!-- 🎵 Müzik butonu (kutusuz, sade siyah yazı) -->
-  <button id="playButton">🎵 Müziği Başlat</button>
-  <audio id="music" src="baba.mp3"></audio>
-
-  <!-- 📸 Fotoğraf albümü kutusu -->
+  <!-- 🎵 Müzik butonu + 📸 Fotoğraf albümü yan yana -->
   <div class="box-container">
+    <button id="playButton">🎵 Müziği Başlat</button>
+
     <div class="box" id="photoBox">
       <div class="box-content">
         <div class="photo-gallery">
@@ -156,6 +156,8 @@
       <span class="box-label">📸 Fotoğraf Albümü</span>
     </div>
   </div>
+
+  <audio id="music" src="baba.mp3"></audio>
 
   <script>
     // 🎵 Müzik butonu
