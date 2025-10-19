@@ -81,20 +81,20 @@
       opacity: 1;
     }
 
-    /* Müzik butonu (ilk haline geri dönmüş versiyon) */
+    /* 🎵 Müzik butonu — sade yazı haline getirildi */
     #playButton {
-      background-color: #ff66b2;
-      color: white;
+      background: none;
       border: none;
-      border-radius: 10px;
-      padding: 15px 25px;
+      color: black;
+      font-size: 20px;
+      font-weight: bold;
       cursor: pointer;
-      font-size: 16px;
-      transition: 0.3s;
+      text-shadow: 0 0 5px white;
+      transition: transform 0.2s;
     }
 
     #playButton:hover {
-      background-color: #ff3385;
+      transform: scale(1.1);
     }
 
     /* Fotoğraf galerisi */
@@ -139,17 +139,12 @@
   <h1>MEHMET ❤️ ELA</h1>
   <h2>ÇOK SEVİYORUM SENİ ELAA</h2>
 
-  <!-- Kutular -->
-  <div class="box-container">
-    <!-- 🎵 Müzik kutusu (ilk haline döndü) -->
-    <div class="box" id="musicBox">
-      <div class="box-content" style="opacity:1;">
-        <button id="playButton">🎵 Müziği Başlat</button>
-        <audio id="music" src="baba.mp3"></audio>
-      </div>
-    </div>
+  <!-- 🎵 Müzik butonu (kutusuz, sade siyah yazı) -->
+  <button id="playButton">🎵 Müziği Başlat</button>
+  <audio id="music" src="baba.mp3"></audio>
 
-    <!-- 📸 Fotoğraf kutusu (şu anki halini koruyor) -->
+  <!-- 📸 Fotoğraf albümü kutusu -->
+  <div class="box-container">
     <div class="box" id="photoBox">
       <div class="box-content">
         <div class="photo-gallery">
@@ -166,8 +161,7 @@
     // 🎵 Müzik butonu
     const playButton = document.getElementById('playButton');
     const music = document.getElementById('music');
-    playButton.addEventListener('click', (event) => {
-      event.stopPropagation(); // kutuya tıklamayı engeller
+    playButton.addEventListener('click', () => {
       if (music.paused) {
         music.play();
         playButton.textContent = "🎶 Çalıyor...";
